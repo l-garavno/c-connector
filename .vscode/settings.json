@@ -1,0 +1,10 @@
+{
+  "cSpell.ignorePaths": [
+    "dist",
+    "node_modules",
+    ".gitignore",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "cSpell.words": ["garavno"]
+}

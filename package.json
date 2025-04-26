@@ -1,11 +1,36 @@
 {
   "name": "@l-garavno/c-connector",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.2",
+  "description": "Connector for C-Connector",
+  "keywords": [
+    "typescript",
+    "library"
+  ],
+  "author": "L-Garavno",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
-  "author": "",
-  "license": "MIT"
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/l-garavno/c-connector"
+  },
+  "bugs": {
+    "url": "https://github.com/l-garavno/c-connector/issues"
+  },
+  "homepage": "https://github.com/l-garavno/c-connector#readme"
 }
