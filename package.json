@@ -1,6 +1,6 @@
 {
   "name": "@l-garavno/c-connector",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Connector for C-Connector",
   "keywords": [
     "typescript",
@@ -15,6 +15,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsup",
+    "publish": "yarn build && npm publish",
     "test": "vitest run",
     "format": "prettier --write .",
     "check-format": "prettier --check ."
