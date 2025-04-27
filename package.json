@@ -17,11 +17,11 @@
     "build": "rm -rf ./dist && tsup src/index.ts --format cjs,esm --dts --clean",
     "test": "vitest run",
     "format": "prettier --write .",
-    "check-format": "prettier --check .",
-    "prepublish": "yarn build"
+    "check-format": "prettier --check ."
   },
   "devDependencies": {
     "@types/node": "^22.15.2",
+    "@types/pg": "^8.11.14",
     "prettier": "^3.5.3",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
@@ -46,6 +46,7 @@
   "license": "MIT",
   "homepage": "https://github.com/l-garavno/c-connector#readme",
   "dependencies": {
-    "googleapis": "^148.0.0"
+    "googleapis": "^148.0.0",
+    "pg": "^8.15.6"
   }
 }
