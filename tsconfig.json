@@ -1,11 +1,7 @@
 {
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "**/*.test.ts"
-  ],
-    "compilerOptions": {
+  "include": ["src"],
+  "exclude": ["**/*.test.ts"],
+  "compilerOptions": {
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es2022",

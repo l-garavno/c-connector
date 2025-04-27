@@ -1,3 +1,1 @@
-export function greet(name: string): string {
-  return `Hello, ${name}!`;
-}
+export * as googleSpreadsheet from './google-spreadsheet/index.js';
