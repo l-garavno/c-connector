@@ -1,23 +1,24 @@
 {
   "name": "@l-garavno/c-connector",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Connector for C-Connector",
-  "keywords": [
-    "typescript",
-    "library"
-  ],
-  "author": "L-Garavno",
-  "license": "MIT",
-  "files": [
-    "dist"
-  ],
   "type": "module",
-  "main": "dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsup",
+    "clean": "rm -rf ./dist ./coverage ./node_modules",
+    "build": "rm -rf ./dist && tsup src/index.ts --format cjs,esm --dts --clean",
     "test": "vitest run",
     "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "check-format": "prettier --check .",
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "@types/node": "^22.15.2",
@@ -33,6 +34,16 @@
   "bugs": {
     "url": "https://github.com/l-garavno/c-connector/issues"
   },
+  "keywords": [
+    "typescript",
+    "library"
+  ],
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "author": "L-Garavno",
+  "license": "MIT",
   "homepage": "https://github.com/l-garavno/c-connector#readme",
   "dependencies": {
     "googleapis": "^148.0.0"

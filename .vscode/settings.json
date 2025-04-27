@@ -1,6 +1,7 @@
 {
   "cSpell.ignorePaths": [
     "dist",
+    "yarn.lock",
     "node_modules",
     ".gitignore",
     "package.json",
