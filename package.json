@@ -1,6 +1,6 @@
 {
   "name": "@l-garavno/c-connector",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Connector for C-Connector",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -46,7 +46,9 @@
   "license": "MIT",
   "homepage": "https://github.com/l-garavno/c-connector#readme",
   "dependencies": {
+    "axios": "^1.9.0",
     "googleapis": "^148.0.0",
-    "pg": "^8.15.6"
+    "pg": "^8.15.6",
+    "yaml": "^2.7.1"
   }
 }
