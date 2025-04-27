@@ -1,6 +1,6 @@
 {
   "name": "@l-garavno/c-connector",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Connector for C-Connector",
   "keywords": [
     "typescript",
