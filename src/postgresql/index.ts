@@ -10,7 +10,7 @@ export function pgConnector(config: {
 }) {
   let idleTimer: NodeJS.Timeout | null = null;
   const IDLE_TIMEOUT_MS = config.timeout || 30e3; // 30 seconds
-  let pool: Pool;
+  let pool: Pool | null = null;
 
   function createNewPool() {
     return new Pool({
@@ -25,13 +25,16 @@ export function pgConnector(config: {
     });
   }
 
-  function resetIdleTimer(pool: Pool) {
+  function resetIdleTimer() {
     if (idleTimer) {
       clearTimeout(idleTimer);
     }
 
     idleTimer = setTimeout(async () => {
-      await pool.end();
+      if (pool) {
+        await pool.end();
+        pool = null;
+      }
     }, IDLE_TIMEOUT_MS);
   }
 
@@ -39,7 +42,7 @@ export function pgConnector(config: {
     if (!pool) {
       pool = createNewPool();
     }
-    resetIdleTimer(pool);
+    resetIdleTimer();
     const result = await pool.query(text, params);
     return result.rows as T[];
   }
