@@ -1,1 +1,1 @@
-export * as googleSpreadsheet from './google-spreadsheet/index.js';
+export { googleSpreadsheet } from './google-spreadsheet/index.js';

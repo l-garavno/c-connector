@@ -1,8 +1,6 @@
 import { expect, describe, test, beforeEach } from 'vitest';
-import connector, {
-  GoogleCredential,
-  GoogleSpreadsheetConnector,
-} from './index';
+import { GoogleCredential, GoogleSpreadsheetConnector } from './index';
+import { googleSpreadsheet } from '../index';
 
 describe('google-spreadsheet', () => {
   let gsConnector: GoogleSpreadsheetConnector;
@@ -10,14 +8,14 @@ describe('google-spreadsheet', () => {
   const sheetName = 'test-library';
 
   beforeEach(() => {
-    const credential = {
+    const credential: GoogleCredential = {
       credential: {
         client_email: process.env.VITE_ENV_GOOGLE_CONNECTOR_CLIENT_EMAIL || '',
         private_key:
           process.env.VITE_ENV_GOOGLE_CONNECTOR_CLIENT_PRIVATE_KEY || '',
       },
     };
-    gsConnector = connector(credential);
+    gsConnector = googleSpreadsheet(credential);
   });
 
   test('should read data from a google spreadsheet', async () => {

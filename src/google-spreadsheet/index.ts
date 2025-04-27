@@ -65,7 +65,7 @@ async function write(
     },
   });
 }
-export default function init(
+export function googleSpreadsheet(
   googleCredential: GoogleCredential,
 ): GoogleSpreadsheetConnector {
   const auth = new google.auth.JWT(
