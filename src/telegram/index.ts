@@ -1,6 +1,6 @@
+import { createReadStream } from 'node:fs';
 import axios from 'axios';
 import FormData from 'form-data';
-import { createReadStream } from 'fs';
 
 export function telegramConnector(token: string) {
   return {
@@ -9,7 +9,7 @@ export function telegramConnector(token: string) {
   };
 }
 
-function uploadTelegramFile(
+async function uploadTelegramFile(
   token: string,
   {
     file,
@@ -29,10 +29,10 @@ function uploadTelegramFile(
     .post(`https://api.telegram.org/bot${token}/sendPhoto`, formData, {
       headers: formData.getHeaders(),
     })
-    .then((res) => res.data);
+    .then((response) => response.data as unknown);
 }
 
-function sendTelegramMessage(
+async function sendTelegramMessage(
   token: string,
   {
     chatId,
@@ -53,10 +53,12 @@ function sendTelegramMessage(
         'Content-Type': 'application/json',
       },
       data: JSON.stringify({
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         chat_id: chatId,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         parse_mode: parseMode,
-        text: text,
+        text,
       }),
     })
-    .then((res) => res.data);
+    .then((response) => response.data as unknown);
 }

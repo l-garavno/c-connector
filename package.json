@@ -13,11 +13,11 @@
     }
   },
   "scripts": {
-    "clean": "rm -rf ./dist ./coverage ./node_modules",
+    "clean": "rm -rf ./dist",
     "build": "rm -rf ./dist && tsup src/index.ts --format cjs,esm --dts --clean",
     "test": "vitest run",
-    "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "format": "xo --fix ./src",
+    "check-format": "xo --check ./src"
   },
   "devDependencies": {
     "@types/node": "^22.15.2",
@@ -25,7 +25,8 @@
     "prettier": "^3.5.3",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.2"
+    "vitest": "^3.1.2",
+    "xo": "^0.60.0"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,8 @@
   "homepage": "https://github.com/l-garavno/c-connector#readme",
   "dependencies": {
     "axios": "^1.9.0",
+    "form-data": "^4.0.2",
+    "google-auth-library": "^9.15.1",
     "googleapis": "^148.0.0",
     "pg": "^8.15.6",
     "yaml": "^2.7.1"

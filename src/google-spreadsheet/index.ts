@@ -1,5 +1,5 @@
 import { google } from 'googleapis';
-import { JWT } from 'google-auth-library';
+import { type JWT } from 'google-auth-library';
 
 export type GoogleSpreadsheetConnector = {
   read: (id: string, sheet: string, range: string) => Promise<string[][]>;
@@ -32,8 +32,7 @@ async function read(
   sheet: string,
   range: string,
 ) {
-  await new Promise((resolve) => setTimeout(resolve, 100));
-  const sheetInstance = await google.sheets({
+  const sheetInstance = google.sheets({
     auth,
     version: 'v4',
   });
@@ -41,10 +40,11 @@ async function read(
     spreadsheetId,
     range: `${sheet}!${range}`,
   });
-  const values: string[][] = result.data.values || [];
+  const values: string[][] = (result.data.values ?? []) as string[][];
   return values;
 }
 
+// eslint-disable-next-line max-params
 async function write(
   auth: JWT,
   spreadsheetId: string,
@@ -52,7 +52,7 @@ async function write(
   range: string,
   values: unknown[][],
 ) {
-  const sheetInstance = await google.sheets({
+  const sheetInstance = google.sheets({
     auth,
     version: 'v4',
   });
@@ -65,13 +65,14 @@ async function write(
     },
   });
 }
+
 export function googleSpreadsheet(
   googleCredential: GoogleCredential,
 ): GoogleSpreadsheetConnector {
   const auth = new google.auth.JWT(
     googleCredential.credential.client_email,
     undefined,
-    googleCredential.credential.private_key.replace(/\\n/g, '\n'),
+    googleCredential.credential.private_key.replaceAll('\\n', '\n'),
     'https://www.googleapis.com/auth/spreadsheets',
   );
   return {

@@ -1,16 +1,16 @@
 import { expect, describe, test, beforeAll } from 'vitest';
-import { postgresql } from '../index';
+import { postgresql } from '../index.js';
 
 describe('postgresql', () => {
   let connector: ReturnType<typeof postgresql>;
 
   beforeAll(() => {
     connector = postgresql({
-      host: process.env.VITE_ENV_POSTGRESQL_HOST || '',
+      host: process.env.VITE_ENV_POSTGRESQL_HOST ?? '',
       port: 5432,
-      user: process.env.VITE_ENV_POSTGRESQL_USER || '',
-      password: process.env.VITE_ENV_POSTGRESQL_PASSWORD || '',
-      database: process.env.VITE_ENV_POSTGRESQL_DATABASE || '',
+      user: process.env.VITE_ENV_POSTGRESQL_USER ?? '',
+      password: process.env.VITE_ENV_POSTGRESQL_PASSWORD ?? '',
+      database: process.env.VITE_ENV_POSTGRESQL_DATABASE ?? '',
       timeout: 60e3,
     });
   });

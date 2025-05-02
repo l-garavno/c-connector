@@ -8,9 +8,9 @@ export function pgConnector(config: {
   database: string;
   timeout: number;
 }) {
-  let idleTimer: NodeJS.Timeout | null = null;
-  const IDLE_TIMEOUT_MS = config.timeout || 30e3; // 30 seconds
-  let pool: Pool | null = null;
+  let idleTimer: NodeJS.Timeout | undefined;
+  const idleTimeoutMs = config.timeout || 30e3; // 30 seconds
+  let pool: Pool | undefined;
 
   function createNewPool() {
     return new Pool({
@@ -33,17 +33,15 @@ export function pgConnector(config: {
     idleTimer = setTimeout(async () => {
       if (pool) {
         await pool.end();
-        pool = null;
+        pool = undefined;
       }
-    }, IDLE_TIMEOUT_MS);
+    }, idleTimeoutMs);
   }
 
-  async function query<T>(text: string, params?: unknown[]) {
-    if (!pool) {
-      pool = createNewPool();
-    }
+  async function query<T>(text: string, parameters?: unknown[]) {
+    pool ||= createNewPool();
     resetIdleTimer();
-    const result = await pool.query(text, params);
+    const result = await pool.query(text, parameters);
     return result.rows as T[];
   }
 

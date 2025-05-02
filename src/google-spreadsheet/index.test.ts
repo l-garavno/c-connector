@@ -1,6 +1,9 @@
 import { expect, describe, test, beforeEach } from 'vitest';
-import { GoogleCredential, GoogleSpreadsheetConnector } from './index';
-import { googleSpreadsheet } from '../index';
+import { googleSpreadsheet } from '../index.js';
+import {
+  type GoogleCredential,
+  type GoogleSpreadsheetConnector,
+} from './index.js';
 
 describe('google-spreadsheet', () => {
   let gsConnector: GoogleSpreadsheetConnector;
@@ -10,9 +13,11 @@ describe('google-spreadsheet', () => {
   beforeEach(() => {
     const credential: GoogleCredential = {
       credential: {
-        client_email: process.env.VITE_ENV_GOOGLE_CONNECTOR_CLIENT_EMAIL || '',
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        client_email: process.env.VITE_ENV_GOOGLE_CONNECTOR_CLIENT_EMAIL ?? '',
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         private_key:
-          process.env.VITE_ENV_GOOGLE_CONNECTOR_CLIENT_PRIVATE_KEY || '',
+          process.env.VITE_ENV_GOOGLE_CONNECTOR_CLIENT_PRIVATE_KEY ?? '',
       },
     };
     gsConnector = googleSpreadsheet(credential);

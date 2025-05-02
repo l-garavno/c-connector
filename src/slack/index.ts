@@ -9,9 +9,9 @@ export async function slackNotify({
 }: {
   hook: string;
   title: string;
-  content: string | object;
+  content: string | Record<string, unknown>;
   icon?: string;
-  attachments?: Record<string, string>[];
+  attachments?: Array<Record<string, string>>;
 }) {
   const response = await axios.request({
     method: 'POST',
@@ -24,12 +24,13 @@ export async function slackNotify({
       attachments,
     }),
   });
-  return response.data;
+  return response.data as unknown;
 }
 
-function formatContent(content: string | object): string {
+function formatContent(content: string | Record<string, unknown>): string {
   if (typeof content === 'object') {
     return stringify(content);
   }
+
   return content;
 }
