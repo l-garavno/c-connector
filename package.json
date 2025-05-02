@@ -1,6 +1,6 @@
 {
   "name": "@l-garavno/c-connector",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Connector for C-Connector",
   "type": "module",
   "main": "./dist/index.cjs",
